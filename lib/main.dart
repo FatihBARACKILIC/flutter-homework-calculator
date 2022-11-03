@@ -34,6 +34,7 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
   double equationFontSize = 25.0;
   double resultFontSize = 35.0;
 
+  /// When users click the buttons, does processes and gives the result.
   buttonPressed(String buttonText) {
     setState(() {
       if (buttonText == "C") {
@@ -78,6 +79,7 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
     });
   }
 
+  /// When it works create button Widgets
   Widget buildButton(String buttonText, double buttonHeight, Color textColor) {
     return SizedBox(
       height: MediaQuery.of(context).size.width * .25,
@@ -105,34 +107,34 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.amber,
-        foregroundColor: Colors.black,
-        title: const Text("Calculator"),
-      ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            alignment: Alignment.centerRight,
-            padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-            child: Text(
-              equation,
-              style: TextStyle(fontSize: equationFontSize),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.amber,
+          foregroundColor: Colors.black,
+          title: const Text("Calculator"),
+        ),
+        body: Column(
+          children: <Widget>[
+            Container(
+              alignment: Alignment.centerRight,
+              padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+              child: Text(
+                equation,
+                style: TextStyle(fontSize: equationFontSize),
+              ),
+            ), // Prints the Equation
+            Container(
+              alignment: Alignment.centerRight,
+              padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+              child: Text(
+                result,
+                style: TextStyle(fontSize: resultFontSize),
+              ),
+            ), // Prints the Result
+            const Expanded(
+              child: Divider(),
             ),
-          ),
-          Container(
-            alignment: Alignment.centerRight,
-            padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-            child: Text(
-              result,
-              style: TextStyle(fontSize: resultFontSize),
-            ),
-          ),
-          const Expanded(
-            child: Divider(),
-          ),
-          Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 SizedBox(
@@ -142,7 +144,7 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
                       TableRow(
                         children: [
                           buildButton("C", 1, Colors.blueAccent),
-                          buildButton("X", 1, Colors.green),
+                          buildButton("X", 1, Colors.red),
                           buildButton("%", 1, Colors.black),
                         ],
                       ),
@@ -209,9 +211,11 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
                     ],
                   ),
                 ),
-              ]),
-        ],
+              ],
+            ), // Button list
+          ],
+        ),
       ),
-    ));
+    );
   }
 }
